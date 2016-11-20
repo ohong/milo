@@ -41,8 +41,13 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             if (text.includes("drink")) {
                 drinkCheckin(sender)
+                sendTextMessage(sender, "Okay, you've had a beer.")
                 continue
             }
+            // else if (text.includes("hello")){
+            //     greetings(sender)
+            //     continue
+            // }
             sendTextMessage(sender, "You said: " + text.substring(0, 200))
         }
     }
@@ -69,27 +74,45 @@ function sendTextMessage(sender, text) {
     })
 }
 
+// function greetings(sender){
+//     let messageData = { text:text }
+//     request({
+//         url: 'https://graph.facebook.com/v2.6/me/messages',
+//         qs: {access_token:token},
+//         method: 'POST',
+//         json: {
+//             recipient: {id:sender},
+//             message: messageData,
+//         }
+//     }, function(error, response, body) {
+//         if (error) {
+//             console.log('Error sending messages: ', error)
+//         } else if (response.body.error) {
+//             console.log('Error: ', response.body.error)
+//         }
+//     })
+// }
+
 function drinkCheckin(sender) {
     let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "button",
-                "text": "What did you have to drink?",
-                "buttons":[
-                    {
-                        "type":"postback",
-                        "title":"Beer",
-                        "payload":"I had a beer."
-                    },
-                    {
-                        "type":"postback",
-                        "title":"Shot",
-                        "payload":"I had a shot."
-                    }
-                ]
-            }
-        }
+        "text": "How much more have you had to drink in the past hour?",
+            "quick_replies":[
+                {
+                    "content_type":"text",
+                    "title":"Beer"
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Hard Liqour"
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
+                },
+                {
+                    "content_type":"text",
+                    "title":"Wine"
+                    "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
+                }
+            ]
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
