@@ -251,7 +251,7 @@ function drinkCheckin(sender) {
           },
           {
             "content_type":"text",
-            "title":"Hard Liqour",
+            "title":"Hard Liquor",
             "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
           },
           {
