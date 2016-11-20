@@ -52,8 +52,8 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "Thanks, can you tell me how much you weigh?")
                 continue
             }
-            if (text.includes("1")){
-                sendTextMessage(sender, "Got it. In case you ever need help, can you share with me the contact of a trusted friend?")
+            if (text.includes("1") && !text.includes("Joe")){
+                sendTextMessage(sender, "Got it. Just to let you know, your weight means that you might feel the effects of alcohol faster than your friends. In case you ever need help, can you share with me the contact of a trusted friend?")
                 continue
             }
             if (text.includes("Joe")){
