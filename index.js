@@ -39,11 +39,10 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            // if (text.includes("drink")) {
-            //     drinkCheckin(sender)
-            //     // sendTextMessage(sender, "Okay, you've had a beer.")
-            //     continue
-            // }
+            if (text.includes("drink")) {
+                drinkCheckin(sender)
+                continue
+            }
             // else if (text.includes("hello")){
             //     greetings(sender)
             //     continue
@@ -105,7 +104,7 @@ function drinkCheckin(sender) {
             {
                 "content_type":"text",
                 "title":"Hard Liqour"
-                // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
+                //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
             },
             {
                 "content_type":"text",
