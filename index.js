@@ -41,7 +41,7 @@ app.post('/webhook/', function (req, res) {
             let text = event.message.text
             if (text.includes("drink")) {
                 drinkCheckin(sender)
-                sendTextMessage(sender, "Okay, you've had a beer.")
+                // sendTextMessage(sender, "Okay, you've had a beer.")
                 continue
             }
             // else if (text.includes("hello")){
