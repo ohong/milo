@@ -56,7 +56,6 @@ app.post('/webhook/', function (req, res) {
                 continue
             }
             if (text.includes("Joe")){
-                sendTextMessage(sender, "Okay, I'll let Joe (919-519-6442) know if you need help during the night.")
                 getReturnTime(sender)
                 continue
             }
@@ -170,7 +169,7 @@ function checkSex(sender){
 
 function getReturnTime(sender){
     let messageData = {
-        "text":"What time do you plan on getting home?",
+        "text":"Okay, I'll let Joe (919-519-6442) know if you need help during the night. What time do you plan on getting home?",
         "quick_replies":[
           {
             "content_type":"text",
