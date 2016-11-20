@@ -73,7 +73,6 @@ app.post('/webhook/', function (req, res) {
             }
             if (text.toLowerCase().includes("drink")) {
                 drinkCheckin(sender)
-                sendTextMessage(sender, "How many have you had?")
                 continue
             }
             if (text === "Beer"){
@@ -87,7 +86,7 @@ app.post('/webhook/', function (req, res) {
                 checkLocation(sender)
                 continue
             }
-            sendTextMessage(sender, "You said: " + text.substring(0, 200))
+            sendTextMessage(sender, "Ok, " + text.substring(0, 200))
         }
     }
     res.sendStatus(200)
@@ -234,7 +233,7 @@ function getReturnTime(sender){
 
 function drinkCheckin(sender) {
     let messageData = {
-        "text":"How much more have you had to drink in the past hour?",
+        "text":"What have you drank in the past hour?",
         "quick_replies":[
           {
             "content_type":"text",
