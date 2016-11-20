@@ -39,11 +39,11 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            if (text.includes("drink")) {
-                drinkCheckin(sender)
-                // sendTextMessage(sender, "Okay, you've had a beer.")
-                continue
-            }
+            // if (text.includes("drink")) {
+            //     drinkCheckin(sender)
+            //     // sendTextMessage(sender, "Okay, you've had a beer.")
+            //     continue
+            // }
             // else if (text.includes("hello")){
             //     greetings(sender)
             //     continue
@@ -95,22 +95,22 @@ function sendTextMessage(sender, text) {
 
 function drinkCheckin(sender) {
     let messageData = {
-        "text": "How much more have you had to drink in the past hour?",
+        "text":"How much more have you had to drink in the past hour?",
         "quick_replies":[
             {
                 "content_type":"text",
                 "title":"Beer"
-                "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
+                // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
             },
             {
                 "content_type":"text",
                 "title":"Hard Liqour"
-                "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
+                // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
             },
             {
                 "content_type":"text",
                 "title":"Wine"
-                "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
+                // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
             }
         ]
     }
