@@ -79,7 +79,11 @@ app.post('/webhook/', function (req, res) {
             if (text === "Beer"){
                 sendTextMessage(sender, "How many beers have you had?")
             }
-            if (text.toLowerCase().includes("home")){
+            if (text.toLowerCase().includes("late")){
+                goHome(sender)
+                continue
+            }
+            if (text.toLowerCase() === ("Yes, I'm going home.")){
                 checkLocation(sender)
                 continue
             }
@@ -266,9 +270,42 @@ function drinkCheckin(sender) {
     })
 }
 
+function goHome(sender) {
+    let messageData = {
+        "text":"Are you going home now?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Yes, I'm going home.",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HOME"
+          },
+          {
+            "content_type":"text",
+            "title":"No, I'm staying a bit longer",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_STAY"
+          }
+        ]
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
 function checkLocation(sender){
     let messageData = {
-        "text":"Just to make sure, can you show me where you are?:",
+        "text":"Great, be sure to share your location with me once you're home:",
         "quick_replies":[
             {
                 "content_type":"location",
