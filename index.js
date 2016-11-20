@@ -136,7 +136,7 @@ function greeting(sender){
 
 function checkSex(sender){
     let messageData = {
-        "text":"Cool! Before you head out, I'm going to ask you a few questions to keep safe throughout the night. Are you male or female?",
+        "text":"Cool! Before you head out, I'm going to ask you a few questions to keep you safe throughout the night. Are you male or female?",
         "quick_replies":[
           {
             "content_type":"text",
