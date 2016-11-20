@@ -78,7 +78,7 @@ function sendGenericMessage(sender) {
                 "elements": [{
                     "title": "First card",
                     "subtitle": "Element #1 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/rift.png",
+                    "image_url": "http://www.clipartbest.com/cliparts/aie/obE/aieobEGxT.png",
                     "buttons": [{
                         "type": "web_url",
                         "url": "https://www.messenger.com",
@@ -91,7 +91,7 @@ function sendGenericMessage(sender) {
                 }, {
                     "title": "Second card",
                     "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "image_url": "http://www.bacardi.com/us/getattachment/6705f407-4914-48d0-aadc-062395d5fcd6/Oakheart-Shot-Drink",
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
