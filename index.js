@@ -39,12 +39,11 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            if (text.includes("hey")){
+            if (text.includes("hey") || text.includes("Hey")){
                 greeting(sender)
                 continue
             }
             if (text === "YES") {
-                sendTextMessage(sender, "Cool! Before you head out, I'm going to ask you a few questions to keep safe throughout the night.")
                 checkSex(sender)
                 continue
             }
@@ -138,7 +137,7 @@ function greeting(sender){
 
 function checkSex(sender){
     let messageData = {
-        "text":"Are you male or female?",
+        "text":"Cool! Before you head out, I'm going to ask you a few questions to keep safe throughout the night. Are you male or female?",
         "quick_replies":[
           {
             "content_type":"text",
