@@ -94,38 +94,22 @@ function sendTextMessage(sender, text) {
 
 function drinkCheckin(sender) {
     let messageData = {
-        // "text":"How much more have you had to drink in the past hour?",
-        // "quick_replies":[
-        //     {
-        //         "content_type":"text",
-        //         "title":"Beer"
-        //         // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
-        //     },
-        //     {
-        //         "content_type":"text",
-        //         "title":"Hard Liqour"
-        //         //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
-        //     },
-        //     {
-        //         "content_type":"text",
-        //         "title":"Wine"
-        //         // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
-        //     }
-        // ]
-
-        "text":"Pick a color:",
+        "text":"How much more have you had to drink in the past hour?",
         "quick_replies":[
           {
             "content_type":"text",
-            "title":"Red",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
-            "image_url":"http://petersfantastichats.com/img/red.png"
+            "title":"Beer",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
           },
           {
             "content_type":"text",
-            "title":"Green",
-            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
-            "image_url":"http://petersfantastichats.com/img/green.png"
+            "title":"Hard Liqour",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
+          },
+          {
+            "content_type":"text",
+            "title":"Wine",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
           }
         ]
     }
