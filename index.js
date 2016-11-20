@@ -39,14 +39,15 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            if (text.includes("drink")) {
-                drinkCheckin(sender)
+            if (text.includes("hey")){
+                greeting(sender)
                 continue
             }
-            // else if (text.includes("hello")){
-            //     greetings(sender)
-            //     continue
-            // }
+            if (text.includes("drink")) {
+                drinkCheckin(sender)
+                sendTextMessage(sender, "How many have you had?")
+                continue
+            }
             sendTextMessage(sender, "You said: " + text.substring(0, 200))
         }
     }
@@ -73,24 +74,38 @@ function sendTextMessage(sender, text) {
     })
 }
 
-// function greetings(sender){
-//     let messageData = { text:text }
-//     request({
-//         url: 'https://graph.facebook.com/v2.6/me/messages',
-//         qs: {access_token:token},
-//         method: 'POST',
-//         json: {
-//             recipient: {id:sender},
-//             message: messageData,
-//         }
-//     }, function(error, response, body) {
-//         if (error) {
-//             console.log('Error sending messages: ', error)
-//         } else if (response.body.error) {
-//             console.log('Error: ', response.body.error)
-//         }
-//     })
-// }
+function greeting(sender){
+    let messageData = {
+        "text":"Hey, I'm Milo! Are you going out tonight?",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"YES",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_YES"
+          },
+          {
+            "content_type":"text",
+            "title":"NO",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_NO"
+          }
+        ]
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
 
 function drinkCheckin(sender) {
     let messageData = {
