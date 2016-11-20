@@ -94,7 +94,6 @@ function sendTextMessage(sender, text) {
 
 function drinkCheckin(sender) {
     let messageData = {
-        "text":"You're {first_name}."
         // "text":"How much more have you had to drink in the past hour?",
         // "quick_replies":[
         //     {
@@ -113,6 +112,22 @@ function drinkCheckin(sender) {
         //         // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
         //     }
         // ]
+
+        "text":"Pick a color:",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Red",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED",
+            "image_url":"http://petersfantastichats.com/img/red.png"
+          },
+          {
+            "content_type":"text",
+            "title":"Green",
+            "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN",
+            "image_url":"http://petersfantastichats.com/img/green.png"
+          }
+        ]
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
