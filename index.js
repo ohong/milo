@@ -77,6 +77,7 @@ app.post('/webhook/', function (req, res) {
             }
             if (text === "Beer"){
                 sendTextMessage(sender, "How many beers have you had?")
+                continue
             }
             if (text.toLowerCase().includes("late")){
                 goHome(sender)
