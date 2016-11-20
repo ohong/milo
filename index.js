@@ -39,7 +39,7 @@ app.post('/webhook/', function (req, res) {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text
-            if (text.includes("hey") || text.includes("Hey")){
+            if (text.toLowerCase().includes("hey")){
                 greeting(sender)
                 continue
             }
@@ -47,15 +47,19 @@ app.post('/webhook/', function (req, res) {
                 checkSex(sender)
                 continue
             }
+            else if (text === "NO") {
+                sendTextMessage(sender, "Okay, have a good night!")
+                continue
+            }
             if (text.includes("ale")){
                 sendTextMessage(sender, "Thanks, can you tell me how much you weigh?")
                 continue
             }
-            if (text.includes("1") && !text.includes("Joe")){
+            if (text.includes("1") && !text.toLowerCase().includes("joe")){
                 sendTextMessage(sender, "Got it. Just to let you know, your weight means that you might feel the effects of alcohol faster than your friends. In case you ever need help, can you share with me the contact of a trusted friend?")
                 continue
             }
-            if (text.includes("Joe")){
+            if (text.toLowerCase().includes("joe")){
                 getReturnTime(sender)
                 continue
             }
@@ -63,17 +67,21 @@ app.post('/webhook/', function (req, res) {
                 sendTextMessage(sender, "Just to make sure, have you had something to eat tonight?")
                 continue
             }
-            if (text.includes("dinner")){
+            if (text.toLowerCase().includes("dinner")){
                 sendTextMessage(sender, "That's good to hear! It's important to eat something before you drink so the absorbtion of alcohol into your bloodstream is slower. We'll keep in touch throughout the night. Have fun, Oscar!")
                 continue
             }
-            if (text.includes("drink")) {
+            if (text.toLowerCase().includes("drink")) {
                 drinkCheckin(sender)
                 sendTextMessage(sender, "How many have you had?")
                 continue
             }
             if (text === "Beer"){
                 sendTextMessage(sender, "How many beers have you had?")
+            }
+            if (text.toLowerCase().includes("home")){
+                checkLocation(sender)
+                continue
             }
             sendTextMessage(sender, "You said: " + text.substring(0, 200))
         }
@@ -239,6 +247,32 @@ function drinkCheckin(sender) {
             "title":"Wine",
             "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
           }
+        ]
+    }
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {access_token:token},
+        method: 'POST',
+        json: {
+            recipient: {id:sender},
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+    })
+}
+
+function checkLocation(sender){
+    let messageData = {
+        "text":"Just to make sure, can you show me where you are?:",
+        "quick_replies":[
+            {
+                "content_type":"location",
+            }
         ]
     }
     request({
