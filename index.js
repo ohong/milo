@@ -94,24 +94,25 @@ function sendTextMessage(sender, text) {
 
 function drinkCheckin(sender) {
     let messageData = {
-        "text":"How much more have you had to drink in the past hour?",
-        "quick_replies":[
-            {
-                "content_type":"text",
-                "title":"Beer"
-                // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
-            },
-            {
-                "content_type":"text",
-                "title":"Hard Liqour"
-                //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
-            },
-            {
-                "content_type":"text",
-                "title":"Wine"
-                // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
-            }
-        ]
+        "text":"You're {first_name}."
+        // "text":"How much more have you had to drink in the past hour?",
+        // "quick_replies":[
+        //     {
+        //         "content_type":"text",
+        //         "title":"Beer"
+        //         // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_BEER"
+        //     },
+        //     {
+        //         "content_type":"text",
+        //         "title":"Hard Liqour"
+        //         //"payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_HARD_LIQOUR"
+        //     },
+        //     {
+        //         "content_type":"text",
+        //         "title":"Wine"
+        //         // "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_DRINKING_WINE"
+        //     }
+        // ]
     }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
