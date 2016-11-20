@@ -83,7 +83,7 @@ app.post('/webhook/', function (req, res) {
                 goHome(sender)
                 continue
             }
-            if (text.toLowerCase() === ("Yes, I'm going home.")){
+            if (text.toLowerCase().includes("going home")){
                 checkLocation(sender)
                 continue
             }
